@@ -5,7 +5,7 @@
 - collections
 - nullable
 
-## BasicType
+## Basic Types
 - Number Class
 - Array Class
 - Special Array Class
