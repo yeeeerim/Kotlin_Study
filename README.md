@@ -30,3 +30,10 @@
 - Generated Primary Constructors (생성된 기본생성자)
 - Class Member
 - Instance
+
+## 📌 [6. Inheritance](https://github.com/yeeeerim/Kotlin_Study/blob/main/Kotlin_Inflean/src/Inheritance.kt)
+- Inheritance
+- Method Override
+- Property Override
+- Interface
+- Abstract Class
