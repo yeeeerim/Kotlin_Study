@@ -45,3 +45,10 @@
 - Backing Properties
 - Compile-Time Constants
 - Late-Initialized Properties
+
+## 📌 [8. Data Classes & Nested Classes](https://github.com/yeeeerim/Kotlin_Study/blob/main/Kotlin_Inflean/src/Data&Nested_Classes.kt)
+- Data Classes (toString, copy, destructuring declarations)
+- Standard Data Classes
+- Nested Classes (중첩 클래스)
+- Inner Classes (내부 클래스)
+- Anonymous Inner Classes (익명 내부 클래스)
