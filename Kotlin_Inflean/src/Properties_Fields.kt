@@ -1,3 +1,4 @@
+import org.junit.*
 
 fun main() {
     var obj = Address()
@@ -34,7 +35,7 @@ class Address {
         set(value) { value } // 관습적으로 파라메터의 이름이 value 지만, 변경 가능
 
 
-// <가시성 변경 or 어노테이션이 필요한 경우> : body 생략 가능능
+// <가시성 변경 or 어노테이션이 필요한 경우> : body 생략 가능
     var setterVisibility: String = "abc"
         private set
     var setterWithAnnotation: Any? = null
@@ -56,6 +57,13 @@ class Address {
         get() = this.name == ""
 
 
+// <Backing Properties> : implicit backing field 방식이 맞지 않는 경우 이용
+    private var _table: Map<String, Int>? = null // backing property
+    public val table: Map<String, Int>
+        get() {
+            if(_table==null) _table = HashMap()
+            return _table ?: throw AssertionError("null")
+        }
 }
 fun copyAddress(address: Address): Address {
     val result = Address()
@@ -63,3 +71,42 @@ fun copyAddress(address: Address): Address {
 
     return result
 }
+
+
+/*  <Compile-Time Constants> : const modifier 이용
+    조건 1) Top-level
+    조건 2) object 의 멤버
+    조건 3) String or Primitive 타입으로 초기화된 경우
+ */
+const val SUBSYSTEM_DEPRECATED: String = "This subsystem is deprecated"
+@Deprecated(SUBSYSTEM_DEPRECATED) // 어노테이션에서도 사용 가능 (const 상수가 아니면 사용 불가)
+fun foo(){}
+
+
+// <Late-Initialized Properties> : non-null 타입 프로퍼티를 사용하고 싶지만, 생성자에서 초기화해줄 수 없는 경우
+// ex) Dependency Injection, Butter knife, Unit test 의 setup 메소드
+/*
+    조건 1) 클래스의 바디에서 선언된 프로퍼티만 가능
+    조건 2) 기본생성자에서 선언된 프로퍼티는 안 됨
+    조건 3) var 프로퍼티만 가능
+    조건 4) custom accessor 이 없어야 함
+    조건 5) non-null 타입이어야 함
+    조건 6) primitive 타입이면 안 됨
+    ※ lateinit 프로퍼티가 초기화되기 전에 접근되면 오류 발생
+ */
+class TestSubject {
+    fun method(){}
+}
+public class MyTest {
+    lateinit var subject: TestSubject
+
+    @Before fun setup() {
+        subject = TestSubject()
+    }
+
+    @Test fun test() {
+        subject.method()
+    }
+}
+
+
