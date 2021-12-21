@@ -37,3 +37,11 @@
 - Property Override
 - Interface
 - Abstract Class
+
+## 📌 [7. Properties, Fields](https://github.com/yeeeerim/Kotlin_Study/blob/main/Kotlin_Inflean/src/Properties_Fields.kt)
+- Property (var vs. val)
+- Custom accessors (getter/setter)
+- Backing Fields
+- Backing Properties
+- Compile-Time Constants
+- Late-Initialized Properties
